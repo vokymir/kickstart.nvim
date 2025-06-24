@@ -1040,3 +1040,10 @@ require('lazy').setup({
 vim.api.nvim_set_keymap('n', '<leader><leader>b', ':! dotnet build<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader><leader>run', ':! dotnet build<CR><CR>:DapContinue<CR>learn<CR>', { noremap = true, silent = true })
 --vim.api.nvim_set_keymap('n', '<leader><leader>b', ':lua vim.fn.termopen("dotnet build")<CR>', { noremap = true, silent = true })
+
+require('mason').setup {
+  registries = {
+    'github:mason-org/mason-registry',
+    'github:Crashdummyy/mason-registry',
+  },
+}
