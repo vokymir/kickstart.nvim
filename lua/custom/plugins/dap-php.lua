@@ -1,0 +1,44 @@
+return {
+  -- 'mfussenegger/nvim-dap',
+  -- dependencies = {
+  --   'rcarriga/nvim-dap-ui',
+  --   'jay-babu/mason-nvim-dap.nvim',
+  -- },
+  -- config = function()
+  --   local dap = require 'dap'
+  --
+  --   dap.adapters.php = {
+  --     type = 'executable',
+  --     command = 'node',
+  --     args = {
+  --       vim.fn.stdpath 'data' .. '/mason/packages/php-debug-adapter/extension/out/phpDebug.js',
+  --     },
+  --   }
+  --
+  --   dap.configurations.php = {
+  --     {
+  --       type = 'php',
+  --       request = 'launch',
+  --       name = 'Listen for Xdebug',
+  --       port = 9003,
+  --       pathMappings = {
+  --         -- left: path on server (Apache), right: local path in Neovim
+  --         ['/srv/http/kiv-web/semestralka'] = vim.fn.getcwd(),
+  --       },
+  --     },
+  --   }
+  --
+  --   -- Optional dap-ui
+  --   local dapui = require 'dapui'
+  --   dapui.setup()
+  --   dap.listeners.after.event_initialized['dapui_config'] = function()
+  --     dapui.open()
+  --   end
+  --   dap.listeners.before.event_terminated['dapui_config'] = function()
+  --     dapui.close()
+  --   end
+  --   dap.listeners.before.event_exited['dapui_config'] = function()
+  --     dapui.close()
+  --   end
+  -- end,
+}

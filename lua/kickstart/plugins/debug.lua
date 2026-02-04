@@ -88,13 +88,14 @@ return {
 
       -- You can provide additional configuration to the handlers,
       -- see mason-nvim-dap README for more information
-      handlers = {},
+      -- handlers = {},
 
       -- You'll need to check that you have the required things installed
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'codelldb',
       },
     }
 
@@ -144,5 +145,68 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+    -- ---------------------------------------------------------
+    -- C++ / Rust custom configuration
+    -- This overrides Mason's auto config to prompt for executable/args
+    -- ---------------------------------------------------------
+
+    -- Load project-specific DAP config
+    local project_dap_config = {}
+    local config_path = vim.fn.getcwd() .. '/dap_config.lua'
+    if vim.fn.filereadable(config_path) == 1 then
+      project_dap_config = dofile(config_path)
+    end
+
+    local cwd = vim.fn.getcwd()
+
+    local src_prefix = cwd .. '/src/'
+    local build_prefix_1 = cwd .. '/build/CMakeFiles/zos.dir/src/'
+    local build_prefix_2 = cwd .. '/build/'
+
+    local sourcMap = {
+      [build_prefix_1] = src_prefix,
+      [build_prefix_2] = cwd .. '/',
+      [cwd] = cwd,
+    }
+
+    dap.adapters.codelldb = {
+      type = 'server',
+      port = '${port}',
+      executable = {
+        command = vim.fn.stdpath 'data' .. '/mason/bin/codelldb',
+        args = { '--port', '${port}' },
+      },
+      -- Use the simpler sourceMap
+      sourceMap = sourcMap,
+    }
+
+    dap.configurations.cpp = {
+      {
+        name = 'Launch C++',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          -- Use binary from project config, fallback to default
+          if project_dap_config.cpp and project_dap_config.cpp.binary then
+            return vim.fn.getcwd() .. '/' .. project_dap_config.cpp.binary
+          else
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/bin/zos', 'file')
+          end
+        end,
+        cwd = vim.fn.getcwd(),
+        stopOnEntry = false,
+        args = function()
+          if project_dap_config.cpp and project_dap_config.cpp.args then
+            return project_dap_config.cpp.args
+          else
+            local input = vim.fn.input 'Arguments: '
+            return vim.split(input, ' ')
+          end
+        end,
+      },
+    }
+
+    dap.configurations.c = dap.configurations.cpp
+    dap.configurations.rust = dap.configurations.cpp
   end,
 }
