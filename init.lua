@@ -110,6 +110,8 @@ vim.opt.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
+vim.opt.termguicolors = true
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -155,6 +157,12 @@ vim.opt.inccommand = 'split'
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 999
+
+-- ADDED
+vim.opt.title = true
+-- %t = filename, %m = modified flag, %r = readonly flag
+-- You can customize this string to your liking
+vim.opt.titlestring = 'nvim %t%m'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -1059,3 +1067,15 @@ vim.api.nvim_set_keymap('n', '<leader><leader>run', ':! dotnet build<CR><CR>:Dap
 require 'custom.lsp.clangd'
 
 require 'custom.own.diagnostics'
+require 'custom.own.typst'
+require 'custom.own.format'
+
+require('mason').setup {
+  registries = {
+    'github:mason-org/mason-registry',
+    'github:Crashdummyy/mason-registry',
+  },
+}
+
+require 'custom.own.html'
+require 'custom.lsp.roslyn'

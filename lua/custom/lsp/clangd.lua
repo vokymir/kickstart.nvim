@@ -2,7 +2,7 @@ vim.lsp.config['clangd'] = {
   cmd = { 'clangd' },
 
   -- attach clangd only to C/C++ files
-  filetypes = { 'c', 'cpp', 'cxx', 'cc' },
+  filetypes = { 'c', 'cpp', 'cxx', 'cc', 'h', 'hpp' },
 
   -- set fallback flags depending on language
   on_new_config = function(new_config, root_dir, client)
