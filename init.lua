@@ -1068,6 +1068,7 @@ require 'custom.lsp.clangd'
 
 require 'custom.own.diagnostics'
 require 'custom.own.typst'
+require 'custom.own.typst_invoke'
 require 'custom.own.format'
 
 require('mason').setup {
