@@ -1067,7 +1067,6 @@ vim.api.nvim_set_keymap('n', '<leader><leader>run', ':! dotnet build<CR><CR>:Dap
 require 'custom.lsp.clangd'
 
 require 'custom.own.diagnostics'
-require 'custom.own.typst'
 require 'custom.own.typst_invoke'
 require 'custom.own.format'
 

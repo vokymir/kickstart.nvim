@@ -8,6 +8,8 @@ local M = {}
 local edit_win = nil
 local term_win = nil
 local term_buf = nil
+-- desired width in chars
+local EDIT_WIN_WIDTH = 90
 
 -- GETTERS
 
@@ -50,7 +52,7 @@ function M.preview()
   vim.cmd('silent !zathura --fork ' .. pdf)
 end
 
--- Find the window in which typst is currently edited and resize it to 80 chars.
+-- Find the window in which typst is currently edited and resize it to 80 chars (+ 10 for numbers on the side and stuff)
 -- Won't change cursor position.
 function M.enforce_layout()
   if not edit_win or not vim.api.nvim_win_is_valid(edit_win) then
@@ -59,8 +61,14 @@ function M.enforce_layout()
 
   local current_win = vim.api.nvim_get_current_win()
 
+  -- exclude floating windows
+  local cfg = vim.api.nvim_win_get_config(current_win)
+  if cfg.relative ~= '' then
+    return
+  end
+
   vim.api.nvim_set_current_win(edit_win)
-  vim.cmd 'vertical resize 80'
+  vim.cmd('vertical resize ' .. EDIT_WIN_WIDTH)
 
   if vim.api.nvim_win_is_valid(current_win) then
     vim.api.nvim_set_current_win(current_win)
