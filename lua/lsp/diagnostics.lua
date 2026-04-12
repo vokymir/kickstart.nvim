@@ -1,7 +1,7 @@
 vim.diagnostic.config({
   signs = true,
   underline = true,
-  update_in_insert = true,
+  update_in_insert = false,
   severity_sort = true,
 })
 
@@ -23,5 +23,5 @@ local map_n = function(lhs, rhs, desc)
 end
 
 map_n("<leader>q", vim.diagnostic.setloclist, "Diagnostics list")
-map_n("[d", vim.diagnostic.get_prev, "Previous diagnostic")
+map_n("[d", vim.diagnostic.get_prev, "Prev diagnostic")
 map_n("]d", vim.diagnostic.get_next, "Next diagnostic")

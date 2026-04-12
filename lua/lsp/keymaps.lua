@@ -1,6 +1,8 @@
 -- NOTE: another language-specific keymaps might be set inside languages dir
 
+vim.api.nvim_create_augroup("LspKeymaps", {})
 vim.api.nvim_create_autocmd("LspAttach", {
+  group = "LspKeymaps",
   callback = function(args)
     local buf = args.buf
     local map = function(mode, lhs, rhs, desc)
@@ -11,11 +13,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "gd", vim.lsp.buf.definition, "[g]o to [d]efinition")
     map("n", "gD", vim.lsp.buf.declaration, "[g]o to [D]eclaration")
     map("n", "gi", vim.lsp.buf.implementation, "[g]o to [i]mplementation")
-    map("n", "gr", function()
-      vim.lsp.buf.references(nil, {
-        loclist = true,
-      })
-    end, "Find [r]eferences")
+    map("n", "gr", vim.lsp.buf.references, "[g]oto [r]eference (might open quicklist)")
     map("n", "gt", vim.lsp.buf.type_definition, "[g]o to [t]ype definition")
 
     -- INFORMATION
@@ -34,8 +32,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, "[w]orkspace: [l]ist folders")
 
     -- FORMAT
-    map("n", "<leader>f", function()
+    map("n", "<leader>F", function()
       vim.lsp.buf.format({ async = true })
-    end, "[f]ormat buffer")
+    end, "[F]ormat buffer")
+  end,
+})
+
+-- AUTO FORMATTING
+vim.api.nvim_create_augroup("AutoFormatting", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = "AutoFormatting",
+  callback = function()
+    vim.lsp.buf.format({ async = true })
   end,
 })
