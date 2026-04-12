@@ -21,13 +21,23 @@ vim.pack.add({
   },
 
   { -- Plenary: requirement for telescope, TEEJs funny files
-    src = "https://github.com/nvim-lua/plenary.nvim"
+    src = "https://github.com/nvim-lua/plenary.nvim",
   },
   { -- FZF for Telescope: recommended dependency
-    src = 'https://github.com/nvim-telescope/telescope-fzf-native.nvim'
+    src = 'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
   },
   { -- Telescope: Fuzzy finder
-    src = "https://github.com/nvim-telescope/telescope.nvim"
+    src = "https://github.com/nvim-telescope/telescope.nvim",
+  },
+
+  { -- GitMessenger: show history on line
+    src = 'https://github.com/rhysd/git-messenger.vim',
+  },
+  { -- LazyGit: easily manage git
+    src = 'https://github.com/kdheepak/lazygit.nvim',
+  },
+  { -- GitSigns: show git status in editor
+    src = 'https://github.com/lewis6991/gitsigns.nvim',
   },
 
 })

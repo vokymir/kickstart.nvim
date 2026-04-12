@@ -30,11 +30,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>wl", function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, "[w]orkspace: [l]ist folders")
-
-    -- FORMAT
-    map("n", "<leader>F", function()
-      vim.lsp.buf.format({ async = true })
-    end, "[F]ormat buffer")
   end,
 })
 

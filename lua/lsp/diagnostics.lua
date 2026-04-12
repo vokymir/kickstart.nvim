@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 
 local map = function(mode, lhs, rhs, desc)
-  vim.keymap.set(mode, lhs, rhs, { buffer = 0, desc = desc })
+  vim.keymap.set(mode, lhs, rhs, { desc = desc })
 end
 
 local map_n = function(lhs, rhs, desc)

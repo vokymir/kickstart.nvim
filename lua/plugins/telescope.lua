@@ -1,7 +1,9 @@
+require('plenary')
+require('telescope')
 local ts = require('telescope.builtin')
 
 local map = function(mode, lhs, rhs, desc)
-  vim.keymap.set(mode, lhs, rhs, { buffer = 0, desc = desc })
+  vim.keymap.set(mode, lhs, rhs, { desc = desc })
 end
 
 local map_n = function(lhs, rhs, desc)
@@ -13,8 +15,9 @@ map_n("<leader>fr", ts.lsp_references, "[f]ind [r]eferences")
 map_n("<leader>fi", ts.lsp_implementations, "[f]ind [i]mplementations")
 map_n("<leader>ft", ts.lsp_type_definitions, "[f]ind [t]ype definitions")
 
-map_n("<leader>fd", ts.diagnostics, "[f]ind [d]iagnostics")
+map_n("<leader>fq", ts.diagnostics, "[f]ind diagnostiqs")
 
+map_n("<leader>ff", ts.find_files, "[f]ind [f]iles")
 map_n("<leader>fg", ts.live_grep, "[f]ind via [g]rep")
 map_n("<leader>fb", ts.buffers, "[f]ind [b]uffers")
 map_n("<leader>fh", ts.help_tags, "[f]ind [h]elp tags")

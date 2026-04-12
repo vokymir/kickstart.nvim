@@ -2,7 +2,10 @@ require("basic")
 require("load_plugins")
 
 require("colorscheme")
-require("_oil")
+
+require("plugins.oil")
 require("lsp")
 
-require("_telescope")
+require("plugins.telescope")
+
+require("git")
