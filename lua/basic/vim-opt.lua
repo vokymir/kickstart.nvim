@@ -1,5 +1,5 @@
 -- SYSTEM
-vim.opt.clipboard="unnamedplus"
+vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = "a"
 
 -- UI
@@ -10,10 +10,10 @@ vim.opt.statusline = '[%n] %<%f %h%w%m%r%=%-14.(%l,%c%V%) %P'
 
 -- SEARCH
 vim.opt.ignorecase = true
-vim.opt.smartcase = true -- don't ignore case if contains capitalized letter
+vim.opt.smartcase = true               -- don't ignore case if contains capitalized letter
 vim.opt.wildoptions:append { 'fuzzy' } -- better default search
-vim.opt.hlsearch = true -- highlight after search
-vim.opt.incsearch = true -- live search
+vim.opt.hlsearch = true                -- highlight after search
+vim.opt.incsearch = true               -- live search
 
 -- EDITING (visual helper)
 vim.opt.colorcolumn = '81'
