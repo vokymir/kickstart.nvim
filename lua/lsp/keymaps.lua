@@ -33,6 +33,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+-- RESTORE gq
+vim.keymap.set("n", "<leader>gq", "<CMD>set formatexpr=nil<CR>", { desc = "Restore gq functionality" })
+
 -- AUTO FORMATTING
 vim.api.nvim_create_augroup("AutoFormatting", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
