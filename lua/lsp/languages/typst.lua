@@ -9,7 +9,26 @@ local M = {}
 
 -- CONFIG
 
-local EDIT_WIN_WIDTH = 90
+local function left_gutter_width()
+  local width = 0
+
+  -- number column
+  if vim.wo.number or vim.wo.relativenumber then
+    width = width + vim.wo.numberwidth
+  end
+
+  -- sign column
+  if vim.wo.signcolumn ~= "no" then
+    width = width + 2 -- usually 2–3 cells
+  end
+
+  -- fold column
+  width = width + vim.wo.foldcolumn
+
+  return width
+end
+
+local EDIT_WIN_WIDTH = vim.o.textwidth + left_gutter_width()
 local DEBUG = true
 
 local function log(msg)
