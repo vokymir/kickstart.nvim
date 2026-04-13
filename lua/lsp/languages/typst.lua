@@ -19,7 +19,7 @@ local function left_gutter_width()
 
   -- sign column
   if vim.wo.signcolumn ~= "no" then
-    width = width + 2 -- usually 2–3 cells
+    width = width + 3
   end
 
   -- fold column
