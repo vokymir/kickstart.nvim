@@ -1,4 +1,3 @@
-
 vim.g.mapleader = ' '
 
 require("basic.vim-opt")
