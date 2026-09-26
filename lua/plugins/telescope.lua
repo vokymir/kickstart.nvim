@@ -23,3 +23,19 @@ map_n("<leader>fb", ts.buffers, "[f]ind [b]uffers")
 map_n("<leader>fh", ts.help_tags, "[f]ind [h]elp tags")
 map_n("<leader>fs", ts.lsp_document_symbols, "[f]ind document [s]ymbols")
 map_n("<leader>fS", ts.lsp_workspace_symbols, "[f]ind workspace [S]ymbols")
+
+-- capture once, before anything could ever change it
+local project_root = vim.fn.getcwd()
+local config_root = vim.fn.stdpath("config")
+
+map_n("<leader>nf", function()
+  ts.find_files({ cwd = config_root })
+end, "[n]vim config: [f]ind files")
+
+map_n("<leader>ng", function()
+  ts.live_grep({ cwd = config_root })
+end, "[n]vim config: [g]rep")
+
+map_n("<leader>N", function()
+  ts.find_files({ cwd = project_root })
+end, "back from [N]vim config to project root")

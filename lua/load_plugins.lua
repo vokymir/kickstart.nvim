@@ -13,13 +13,29 @@ vim.pack.add({
     src = 'https://github.com/folke/which-key.nvim',
   },
 
+  -- ##### LSP #####
   { -- LspConfig: LSP - data only, server-specific configs
     src = 'https://github.com/neovim/nvim-lspconfig',
   },
   { -- Mason: install LS
     src = 'https://github.com/mason-org/mason.nvim',
   },
+  { -- bridges mason installs to native vim.lsp.enable()
+    src = 'https://github.com/mason-org/mason-lspconfig.nvim',
+  },
+  {
+    src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
 
+  -- ##### DAP #####
+  {
+    src = "https://github.com/mfussenegger/nvim-dap",
+  },
+  {
+    src = "https://github.com/jay-babu/mason-nvim-dap.nvim",
+  },
+
+  -- ##### TELESCOPE #####
   { -- Plenary: requirement for telescope, TEEJs funny files
     src = "https://github.com/nvim-lua/plenary.nvim",
   },
@@ -30,6 +46,7 @@ vim.pack.add({
     src = "https://github.com/nvim-telescope/telescope.nvim",
   },
 
+  -- ##### GIT #####
   { -- GitMessenger: show history on line
     src = 'https://github.com/rhysd/git-messenger.vim',
   },

@@ -187,26 +187,4 @@ function M.watch()
   })
 end
 
--- =========================================================
--- =========================================================
--- =========================================================
--- =========================================================
-
-return {
-  lsp = "tinymist",
-  mason = "tinymist",
-
-  config = {
-    filetype = { "typst" },
-
-    on_attach = function(_, bufnr)
-      local map = function(lhs, rhs, desc)
-        vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
-      end
-
-      map("<leader>tw", M.watch, "[t]ypst [w]atch")
-      map("<leader>tl", M.enforce_layout, "[t]ypst fix [l]ayout")
-      map("<leader>tp", M.preview, "[t]ypst [p]review PDF")
-    end,
-  },
-}
+return M
