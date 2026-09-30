@@ -1,3 +1,31 @@
+local servers = {
+	lua_ls = "lua-language-server",
+	clangd = "clangd",
+	marksman = "marksman",
+	superhtml = "superhtml",
+	tinymist = "tinymist",
+	ols = "ols",
+	roslyn_ls = "roslyn-language-server",
+}
+local tools = { "stylua" }
+
+require("mason").setup()
+
+require("mason-lspconfig").setup({
+	ensure_installed = vim.tbl_keys(servers),
+})
+
+require("mason-tool-installer").setup({
+	ensure_installed = vim.list_extend(vim.deepcopy(vim.tbl_values(servers)), tools),
+})
+
+require("mason-cleanup").want(vim.tbl_values(servers))
+require("mason-cleanup").want(tools)
+
+require("lsp.diagnostics")
+require("lsp.keymaps")
+
+--[[
 -- lua/lsp/init.lua
 --
 -- lspconfig name -> Mason package name. Explicit and static on purpose:
@@ -6,29 +34,31 @@
 -- setup() is unreliable. Look up new names once at mason-registry.dev
 -- and add them here.
 local servers = {
-  lua_ls = "lua-language-server",
-  clangd = "clangd",
-  marksman = "marksman",
-  superhtml = "superhtml",
-  tinymist = "tinymist",
-  ols = "ols",
+	lua_ls = "lua-language-server",
+	clangd = "clangd",
+	marksman = "marksman",
+	superhtml = "superhtml",
+	tinymist = "tinymist",
+	ols = "ols",
 }
-local tools = { "stylua" }
+local tools = { "stylua", "codelldb" }
 
 require("mason").setup()
 
 require("mason-lspconfig").setup({
-  ensure_installed = vim.tbl_keys(servers),
+	ensure_installed = vim.tbl_keys(servers),
 })
 
 require("mason-tool-installer").setup({
-  ensure_installed = vim.list_extend(vim.deepcopy(vim.tbl_values(servers)), tools),
+	ensure_installed = vim.list_extend(vim.deepcopy(vim.tbl_values(servers)), tools),
 })
 
 require("lsp.cleanup").clean(servers, tools)
 
 require("lsp.diagnostics")
 require("lsp.keymaps")
+
+--]]
 
 --[[
 -- local servers = { "clangd", "lua-language-server", "lua_ls", "marksman", "superhtml", "tinymist" }
